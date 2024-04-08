@@ -1,25 +1,8 @@
-module comparator(a,b,eq,lt,gt);
-input [3:0] a,b;
-output reg eq,lt,gt;
-always @(a,b)
-begin
- if (a==b)
- begin
-  eq = 1'b1;
-  lt = 1'b0;
-  gt = 1'b0;
- end
- else if (a>b)
- begin
-  eq = 1'b0;
-  lt = 1'b0;
-  gt = 1'b1;
- end
- else
- begin
-  eq = 1'b0;
-  lt = 1'b1;
-  gt = 1'b0;
- end
-end 
+
+module encoder(a,y);
+input [7:0]a;
+output[2:0]y;
+or(y[2],a[6],a[5],a[4],a[3]);
+or(y[1],a[6],a[5],a[2],a[1]);
+or(y[0],a[6],a[4],a[2],a[0]);
 endmodule
